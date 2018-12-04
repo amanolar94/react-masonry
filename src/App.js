@@ -1,28 +1,89 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useCallback } from "react";
+import debounce from "lodash.debounce";
+import hits from "lib/PostData";
+import useDimensions from "lib/useDimensions";
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
-    );
+const styles = {
+  container: {
+    backgroundColor: "#fefefe",
+    height: "100vh",
+    width: "100vw",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  },
+
+  maincontent: {
+    height: "100%",
+    width: "90%",
+    display: "flex",
+    flexDirection: "row"
   }
+};
+
+function App() {
+  const [dataUnordered, setDataUnordered] = useState({ hits: [] });
+  const [dataOrdered, setDataOrdered] = useState({ orderedData: [[], [], []] });
+  const [initialRender, setInitialRender] = useState(true);
+  const { innerWidth } = useDimensions();
+
+  useEffect(() => {
+    //This it the place where we fetch the results.
+    //The second argument must be empty so the Effect happens only
+    // when the component mounts
+    setDataUnordered(hits);
+    rearrangeItems(hits);
+  }, []);
+
+  useEffect(
+    () => {
+      !initialRender && throttledRearrangeItems(dataUnordered);
+    },
+    [innerWidth]
+  );
+
+  const throttledRearrangeItems = debounce(({ hits }) => {
+    let columns;
+    if (innerWidth <= 600) {
+      columns = 1;
+    } else if (innerWidth <= 768) {
+      columns = 2;
+    } else {
+      columns = 3;
+    }
+    let orderedData = [[], [], []];
+    hits.forEach((element, index) => {
+      orderedData[index % columns].push(element);
+    });
+    setDataOrdered({ orderedData });
+  }, 1000);
+
+  const rearrangeItems = ({ hits }) => {
+    let columns;
+    if (innerWidth <= 600) {
+      columns = 1;
+    } else if (innerWidth <= 768) {
+      columns = 2;
+    } else {
+      columns = 3;
+    }
+    let orderedData = [[], [], []];
+    hits.forEach((element, index) => {
+      orderedData[index % columns].push(element);
+    });
+    setDataOrdered({ orderedData });
+    setInitialRender(false);
+  };
+  return (
+    <div style={styles.container}>
+      <main style={styles.maincontent}>
+        <div>hello</div>
+        <div>hello</div>
+        <div>hello</div>
+      </main>
+    </div>
+  );
 }
 
 export default App;
