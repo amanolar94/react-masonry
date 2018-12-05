@@ -89,6 +89,7 @@ function App() {
     //The second argument must be empty so the Effect happens only
     // when the component mounts
     setDataUnordered(hits);
+    ///The we do the initial rearrangement
     rearrangeItems(hits);
   }, []);
 
@@ -102,7 +103,7 @@ function App() {
   const throttledRearrangeItems = debounce(({ hits }) => {
     let columns;
     if (innerWidth <= 600) {
-      setDataOrdered([hits, [], []]);
+      setDataOrdered([hits, [], []]); ///If we are in a small device no rearrangement needed
       return;
     } else if (innerWidth <= 1024) {
       columns = 2;
@@ -119,7 +120,7 @@ function App() {
   const rearrangeItems = ({ hits }) => {
     let columns;
     if (innerWidth <= 600) {
-      setDataOrdered([hits, [], []]);
+      setDataOrdered([hits, [], []]); ///If we are in a small device no rearrangement needed
       return;
     } else if (innerWidth <= 1024) {
       columns = 2;
@@ -129,6 +130,10 @@ function App() {
     let orderedData = [[], [], []];
     hits.forEach((element, index) => {
       orderedData[index % columns].push(element);
+      // Let's say that we have 3 columns
+      // eg: 0mod3=0, 1mod3=1, 2mod3=2, 3mod3=0, 4mod3=1, etc....
+      // Therefore the 1st element goes into the the 1st column, the 2nd element into the 2nd column, the 3rd element into the 3rd column, the 4th element into the 1st column, etc...
+      // And that's how we get the items ordered horizontally
     });
     setDataOrdered(orderedData);
     setInitialRender(false);

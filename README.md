@@ -1,6 +1,11 @@
 # This is a massonry layout powered with react.
 ### Using javascript solves the problem of unresponsiveness since we need to rearrange the items based on the screen size.
 ### The project was also implemented using hooks and the latest react alpha version.
+
+##### - I have used the CSS Flexbox in order to create three columns inside of which we are going to place the elements
+##### - What is important (and that's why we use javascript) is that we need our items to be in horizontal order.
+##### - We also need to change the number of columns depending on the screen size so when we have a smaller device we need to rearrange the items in 2 or 1 column(s)
+
 ### You can see a live version [HERE] (https://react-masonry.netlify.com/)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 # You have to run `npm install` first to install every depedencies
