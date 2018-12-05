@@ -1,4 +1,4 @@
-# This is a massonry layout powered with react.
+# This is a masonry layout powered with react.
 ### Using javascript solves the problem of unresponsiveness since we need to rearrange the items based on the screen size.
 ### The project was also implemented using hooks and the latest react alpha version.
 
