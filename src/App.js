@@ -102,8 +102,9 @@ function App() {
   const throttledRearrangeItems = debounce(({ hits }) => {
     let columns;
     if (innerWidth <= 600) {
-      columns = 1;
-    } else if (innerWidth <= 768) {
+      setDataOrdered([hits, [], []]);
+      return;
+    } else if (innerWidth <= 1024) {
       columns = 2;
     } else {
       columns = 3;
@@ -118,7 +119,8 @@ function App() {
   const rearrangeItems = ({ hits }) => {
     let columns;
     if (innerWidth <= 600) {
-      columns = 1;
+      setDataOrdered([hits, [], []]);
+      return;
     } else if (innerWidth <= 1024) {
       columns = 2;
     } else {
@@ -131,6 +133,7 @@ function App() {
     setDataOrdered(orderedData);
     setInitialRender(false);
   };
+
   const [column1, column2, column3] = dataOrdered;
   return (
     <div style={styles.container}>
