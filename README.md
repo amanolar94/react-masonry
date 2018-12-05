@@ -1,6 +1,7 @@
 # This is a massonry layout powered with react.
 ### Using javascript solves the problem of unresponsiveness since we need to rearrange the items based on the screen size.
 ### The project was also implemented using hooks and the latest react alpha version.
+### You can see a live version [HERE] (https://react-masonry.netlify.com/)
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 # You have to run `npm install` first to install every depedencies
 ## Available Scripts

@@ -7,7 +7,8 @@ const styles = {
   container: {
     backgroundColor: "#fefefe",
     display: "flex",
-    flexDirection: "row",
+    flexDirection: "column",
+    alignItems: "center",
     margin: "auto",
     width: "90%"
   },
@@ -133,6 +134,17 @@ function App() {
   const [column1, column2, column3] = dataOrdered;
   return (
     <div style={styles.container}>
+      <h1>A React-Masonry Layout</h1>
+      <h2>
+        You can find the code on{" "}
+        <a href="https://github.com/amanolar94/react-masonry" target="blank">
+          github
+        </a>
+      </h2>
+      <h3 style={{ color: "#fc2a2a" }}>
+        Resize the browser window to see the columns changing depending on
+        device type
+      </h3>
       <main style={styles.maincontent}>
         <div style={styles.column}>
           {column1.map((item, index) => (
