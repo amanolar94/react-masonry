@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect } from "react";
 import debounce from "lodash.debounce";
 import hits from "lib/PostData";
 import useDimensions from "lib/useDimensions";
@@ -6,25 +6,80 @@ import useDimensions from "lib/useDimensions";
 const styles = {
   container: {
     backgroundColor: "#fefefe",
-    height: "100vh",
-    width: "100vw",
     display: "flex",
     flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center"
+    margin: "auto",
+    width: "90%"
   },
 
   maincontent: {
-    height: "100%",
-    width: "90%",
+    display: "flex"
+  },
+  column: {
+    display: "block",
+    // width: "100%"
+    // flexDirection: "column"
+    width: "100%"
+  },
+  blogPost: {
     display: "flex",
-    flexDirection: "row"
+    flexDirection: "column",
+    width: "auto",
+    margin: "0 5% 5% 5%",
+    boxShadow: "5px 10px 20px #969696"
+  },
+  image: {
+    maxWidth: "100%"
+    // maxHeigth: "100%"
   }
 };
 
+const PostItem = ({
+  title,
+  author,
+  dateTime,
+  image,
+  abstract,
+  readingTime
+}) => (
+  <div style={styles.blogPost}>
+    <img src={image} alt={`${title}`} style={styles.image} />
+    <p
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        paddingLeft: "3%",
+        paddingRight: "3%"
+      }}
+    >
+      <small>{`by ${author} ${dateTime}`}</small>
+      <small>{readingTime}</small>
+    </p>
+    <div
+      style={{
+        fontSize: "1.6em",
+        fontWeight: "bold",
+        paddingLeft: "3%",
+        paddingRight: "3%"
+      }}
+    >
+      {title}
+    </div>
+    <p
+      style={{
+        paddingLeft: "3%",
+        paddingRight: "3%",
+        paddingBottom: "3%"
+      }}
+    >
+      {abstract}
+    </p>
+  </div>
+);
+
 function App() {
   const [dataUnordered, setDataUnordered] = useState({ hits: [] });
-  const [dataOrdered, setDataOrdered] = useState({ orderedData: [[], [], []] });
+  const [dataOrdered, setDataOrdered] = useState([[], [], []]);
   const [initialRender, setInitialRender] = useState(true);
   const { innerWidth } = useDimensions();
 
@@ -56,14 +111,14 @@ function App() {
     hits.forEach((element, index) => {
       orderedData[index % columns].push(element);
     });
-    setDataOrdered({ orderedData });
+    setDataOrdered(orderedData);
   }, 1000);
 
   const rearrangeItems = ({ hits }) => {
     let columns;
     if (innerWidth <= 600) {
       columns = 1;
-    } else if (innerWidth <= 768) {
+    } else if (innerWidth <= 1024) {
       columns = 2;
     } else {
       columns = 3;
@@ -72,15 +127,33 @@ function App() {
     hits.forEach((element, index) => {
       orderedData[index % columns].push(element);
     });
-    setDataOrdered({ orderedData });
+    setDataOrdered(orderedData);
     setInitialRender(false);
   };
+  const [column1, column2, column3] = dataOrdered;
   return (
     <div style={styles.container}>
       <main style={styles.maincontent}>
-        <div>hello</div>
-        <div>hello</div>
-        <div>hello</div>
+        <div style={styles.column}>
+          {column1.map((item, index) => (
+            <PostItem key={index} {...item} />
+          ))}
+        </div>
+        {column2.length > 0 && (
+          <div style={styles.column}>
+            {column2.map((item, index) => (
+              <PostItem key={index} {...item} />
+            ))}
+            )}
+          </div>
+        )}
+        {column3.length > 0 && (
+          <div style={styles.column}>
+            {column3.map((item, index) => (
+              <PostItem key={index} {...item} />
+            ))}
+          </div>
+        )}
       </main>
     </div>
   );

@@ -13,9 +13,10 @@ const hits = [
     title: "Post 2",
     author: "amanolar94",
     dateTime: "27/10/1994",
-    image: "",
+    image:
+      "https://images.unsplash.com/photo-1522932467653-e48f79727abf?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=658&q=80",
     abstract:
-      "https://images.unsplash.com/photo-1540331547168-8b63109225b7?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=1633cdbc60721e739bb0fa4f07353e90&auto=format&fit=crop&w=661&q=80"
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus et mauris non lacinia. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
   },
   {
     title: "Post 3",
@@ -31,7 +32,7 @@ const hits = [
     author: "amanolar94",
     dateTime: "27/10/1994",
     image:
-      "https://images.unsplash.com/photo-1540349946389-8ea10a9da3cd?ixlib=rb-0.3.5&s=3f3b868a3564013100808184a8db6f1f&auto=format&fit=crop&w=634&q=80",
+      "https://images.unsplash.com/photo-1543964496-d83d90140d97?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80",
     abstract:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus et mauris non lacinia. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
   },
@@ -99,7 +100,7 @@ const hits = [
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus et mauris non lacinia. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas."
   },
   {
-    title: "Post 112",
+    title: "Post 12",
     author: "amanolar94",
     dateTime: "27/10/1994",
     image:
