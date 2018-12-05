@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import debounce from "lodash.debounce";
-import hits from "lib/PostData";
-import useDimensions from "lib/useDimensions";
+import hits from "./lib/PostData";
+import useDimensions from "./lib/useDimensions";
 
 const styles = {
   container: {
